@@ -46,12 +46,7 @@ function isTypeOf(data) {
 }
 // function invocation
 isTypeOf(myBool);
-isTypeOf(booleanTeam);
-//isTypeOf(nullNow);
-//isTypeOf(cantDefineMe);
-isTypeOf(number15);
-isTypeOf(stringCheese);
-isTypeOf(NaNTime);
+
 
 // Write a JavaScript program that adds 2 numbers together.
 // Declare two variables that are both numbers and then add them in // the console log
