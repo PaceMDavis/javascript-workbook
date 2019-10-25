@@ -24,13 +24,14 @@ const rl = readline.createInterface({
 
 
 const rockPaperScissors = (hand1, hand2) => {
-  const strToLower = (hand1) => {
-    return String(hand1).toLowerCase();
-  }
-  const str2ToLower = (hand2) => {
-    return String(hand2).toLowerCase();
-  }
-  
+  // const strToLower = (hand1) => {
+  //   return String(hand1).toLowerCase();
+  // }
+  // const str2ToLower = (hand2) => {
+  //   return String(hand2).toLowerCase();
+  // }
+  hand1 = hand1.toLowerCase().trim();
+  hand2 = hand2.toLowerCase().trim();  
 
 //First if statement takes care of all tie cases
 //which reduces number of else if statments
@@ -50,9 +51,8 @@ return("Hand two wins!");
 //the else statement doesn't need the last move 
 // declared since its the only one left
 else return("Hand one wins!");
-
-
 }
+
 
 
   // const convertCharacters = (string, hand1, hand2) => {
