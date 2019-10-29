@@ -8,11 +8,43 @@ const rl = readline.createInterface({
 });
 
 
-function rockPaperScissors(hand1, hand2) {
+// function rockPaperScissors(hand1, hand2) {
 
-  // Write code here
+//   // Write code here
 
+// }
+
+
+//Create a function that has an if/elseif/else
+//to determine who wins 
+
+
+const rockPaperScissors = (hand1, hand2) => {
+
+//Use toLowerCase and trim to go through any string entries and make them readable
+hand1 = hand1.toLowerCase().trim();
+hand2 = hand2.toLowerCase().trim();  
+
+//First if statement takes care of all tie cases
+//which reduces number of else if statments
+if (hand1 === hand2)
+return("It's a tie!");
+//make an else if statement for remaining moves minus 1
+else if (hand1 === "rock" && hand2 === "scissors")
+return("Hand one wins!");
+else if (hand1 === "rock" && hand2 === "paper")
+return("Hand two wins!");
+else if (hand1 === "paper" && hand2 === "scissors")
+return("Hand two wins!");
+else if (hand1 === "paper" && hand2 === "rock")
+return("Hand one wins!");
+else if (hand1 === "scissors" && hand2 === "rock")
+return("Hand two wins!");
+//the else statement doesn't need the last move 
+//declared since its the only one left
+else return("Hand one wins!");
 }
+
 
 function getPrompt() {
   rl.question('hand1: ', (answer1) => {
@@ -49,3 +81,5 @@ if (typeof describe === 'function') {
   getPrompt();
 
 }
+
+
