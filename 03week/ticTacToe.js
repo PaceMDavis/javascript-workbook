@@ -73,14 +73,20 @@ function checkForWin() {
   // call diagonal, horizontal, and vertical wins
   // return true if any checks are true
   if ((diagonalWin = true) || (verticalWin = true) || (horizontalWin = true)) {
+    // gameOver();
     return true;
+    
 
   } else {
     return false;
   }
 }
-
-
+// function gameOver() {
+//   let clearBoard = board
+//   if (checkForWin() = true) {
+//   return clearBoard = "" ;
+//   }
+// }
 function ticTacToe(row, column) {
   // Your code here
   // manipulate board array (place X or 0) based on user input (row,column)
@@ -93,14 +99,10 @@ function ticTacToe(row, column) {
    } else {
      playerTurn = 'X';
    }
+  //  checkForWin(); 
 }
 
-// function gameOver() {
-//   let clearBoard = column(row)
-//   if (checkForWin = true) {
-//   return clearBoard = "" ;
-//   }
-// }
+
 function getPrompt() {
   printBoard();
   console.log("It's Player " + playerTurn + "'s turn.");
