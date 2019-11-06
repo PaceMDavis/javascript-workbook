@@ -1,23 +1,35 @@
-document.getElementById('box0').addEventListener("click", test);
+document.getElementById('box0').addEventListener("click", handleClick);
 
-function test (event) {
-  console.log(event)
+function handleClick (event) {
+  console.log(event.target)
+  let square = event.target;
+  square.textContent = playerTurn;
+  let squareCol = square.dataset.col;
+  let squareRow = square.dataset.row;
+  // console.log(squareCol, squareRow);
+  ticTacToe(squareCol, squareRow);
 }
 
+const squares = document.querySelectorAll('.board-square');
 
-const addGamePiece = function(selectedElement) {
-  //create new element
-  let newElement = document.createElement('p')
-  if (playerTurn === 'x') {
-    newElement.innerHTML = 'o'
+squares.forEach((item) => {
+  item.addEventListener("click", handleClick);
+});
 
-    playerTurn = 'o'
-  } else {
-    newElement.innerHTML = 'x'
 
-    playerTurn = 'x'
-  }
-}
+// const addGamePiece = function(selectedElement) {
+//   //create new element
+//   let newElement = document.createElement('p')
+//   if (playerTurn === 'x') {
+//     newElement.innerHTML = 'o'
+
+//     playerTurn = 'o'
+//   } else {
+//     newElement.innerHTML = 'x'
+
+//     playerTurn = 'x'
+//   }
+// }
 
 
 let board = [
