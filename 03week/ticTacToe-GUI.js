@@ -1,3 +1,5 @@
+
+
 // document.getElementById('box0').addEventListener("click", handleClick);
 // let winDiv = document.createElement('p');
 let divChange = document.getElementById("winDisplay");
@@ -6,24 +8,25 @@ let divChange = document.getElementById("winDisplay");
 
 function handleClick (event) {
   console.log(event.target)
-  let square = event.target;
+  square = event.target;
   square.textContent = playerTurn;
-  let squareCol = square.dataset.col;
-  let squareRow = square.dataset.row;
+  squareCol = square.dataset.col;
+  squareRow = square.dataset.row;
   // console.log(squareCol, squareRow);
   ticTacToe(squareCol, squareRow);
-  // checkForWin();
-  // horizontalWin();
-}
-// function displayWinner() {
   
-//   if (checkForWin() = true) {
-//     return divChange.appendChild(document.createTextNode(playerTurn + " wins!!!"));
-//   } else {
-//     return false
-//   };
+}
+// console.log(dataset.col[0], dataset.row[0])
+// checkForWin();
+// function displayWinner() {
+//   handleClick(checkForWin);
+// //   if (checkForWin() = true) {
+// //     return divChange.appendChild(document.createTextNode(playerTurn + " wins!!!"));
+// //   } else {
+// //     return false
+// //   };
+// // }
 // }
-
 const squares = document.querySelectorAll('.board-square');
 
 squares.forEach((item) => {
@@ -79,15 +82,16 @@ function printBoard() {
 //   }
 // }
 function horizontalWin() {
+  
   // Your code here
   // call vertical and diagonal wins
   // return true or false
   // check rows of board for a match
-  if ((squareRow[0] &&squareCol[0]) && (squareRow[0] && squareCol[1]) && (squareRow[0] && squareCol[2]) === playerTurn) {
+  if ((squareRow[0] && squareCol[0]) && (squareRow[0] && squareCol[1]) && (squareRow[0] && squareCol[2]) === playerTurn) {
     return divChange.appendChild(document.createTextNode(playerTurn + " wins!!!"));;
-  } else if ((squareRow[0] &&squareCol[0]) && (squareRow[1] && squareCol[1]) && (squareRow[1] && squareCol[2]) === playerTurn) {
+  } else if ((squareRow[0] && squareCol[0]) && (squareRow[1] && squareCol[1]) && (squareRow[1] && squareCol[2]) === playerTurn) {
     return divChange.appendChild(document.createTextNode(playerTurn + " wins!!!"));;
-  } else if ((squareRow[2] &&squareCol[0]) && (squareRow[2] && squareCol[1]) && (squareRow[2] && squareCol[2]) === playerTurn) {
+  } else if ((squareRow[2] && squareCol[0]) && (squareRow[2] && squareCol[1]) && (squareRow[2] && squareCol[2]) === playerTurn) {
     return divChange.appendChild(document.createTextNode(playerTurn + " wins!!!"));;
   } else{
     return false;
@@ -126,17 +130,22 @@ function diagonalWin() {
   // } else {
   //   return false
   // };
-// function checkForWin() {
-//   // Your code here
-//   // call diagonal, horizontal, and vertical wins
-//   // return true if any checks are true
-//   if ((diagonalWin = true) || (verticalWin = true) || (horizontalWin = true)) {
-//     // gameOver();
-//     return divChange.appendChild(document.createTextNode(playerTurn + " wins!!!"));
-//   } else {
-//     return false;
-//   }
-// }
+
+
+function checkForWin() {
+  //Your code here
+  
+  //call diagonal, horizontal, and vertical wins
+  //return true if any checks are true
+  if ((diagonalWin = true) || (verticalWin = true) || (horizontalWin = true)) {
+    // gameOver();
+    return divChange.appendChild(document.createTextNode(playerTurn + " wins!!!"));
+  } else {
+    return false;
+  }
+}  
+
+
 // function gameOver() {
 //   let clearBoard = board
 //   if (checkForWin() = true) {
