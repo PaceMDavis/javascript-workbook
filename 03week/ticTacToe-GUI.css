@@ -1,0 +1,23 @@
+* {
+  box-sizing:border-box;
+  margin:0;
+}
+body {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+table {
+  height:200px;
+  width:200px;
+  border: 1px solid black;
+}
+tr {
+  border:1px solid black;
+  height:50px;
+}
+td {
+  height:50px;
+  border:1px solid black;
+  text-align:center;
+}
