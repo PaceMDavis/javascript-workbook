@@ -19,33 +19,76 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
-function movePiece() {
+function movePiece(startStack, endStack) {
   // Your code here
+  const move = stacks[startStack].pop();
+  stacks[endStack].push(move);
 
 }
 
-function isLegal() {
+function isLegal(startStack, endStack) {
   // Your code here
+const startStackLength = stacks[startStack].length;
+const endStackLength = stacks[endStack].length;
 
+if (
+  startStackLength === 0 ||
+  startStack === endStack ||
+  stacks[startStack][startStackLength - 1] > stacks[endStack][endStackLength - 1]
+) { 
+  return false;
+} else {
+  return true;
 }
 
+//   let stackReadA = stacks.a.slice(-1)[0];
+//   let stackReadB = stacks.b.slice(-1)[0];
+//   let stackReadC = stacks.c.slice(-1)[0];
+//   if (stackReadA || stackReadB || stackReadC < endStack){
+//     movePiece()
+//   } else {
+//     console.log("Invalid move! Try again!");
+//   }
+
+//   console.log(stacked);
+// }
+}
 function checkForWin() {
   // Your code here
+  let winningStack = stacks.a.length;
+  if(stacks.b.length === winningStack || stacks.c.length === winningStack) {
+  return true;
+  } return false;
 
+}
+function isStack(startStack, endStack) {
+  const validStacks = ['a', 'b', 'c'];
+  if (validStacks.includes(startStack) && validStacks.includes(endStack)){
+    return true;
+  }  
+    return false;
 }
 
 function towersOfHanoi(startStack, endStack) {
   // Your code here
   //create nested for loops to loop over stack array and return values
-  let stackCheck = stacks.length;
-  for (let i = 0; i < stackCheck; i++) {
-    let halfWay = stacks[i].length;
-  for (let j = 0; j<halfWay; j++){
-    console.log(stacks[i][j])
-  }
-  }
+  // let startStack = stacks
 
-}
+  if (isLegal(startStack, endStack) && isStack(startStack, endStack)) {
+    movePiece(startStack, endStack) && checkForWin(startStack, endStack);
+  } else {
+    console.log("Illegal move! Try again!");
+  }
+} 
+  // let stackCheck = stacks.length;
+  // for (let i = 0; i < stackCheck; i++) {
+  //   let halfWay = stacks[i].length;
+  // for (let j = 0; j<halfWay; j++){
+  //   console.log(stacks[i][j])
+  // }
+  // }
+
+
 
 function getPrompt() {
   printStacks();
