@@ -36,6 +36,14 @@ function checkForWin() {
 
 function towersOfHanoi(startStack, endStack) {
   // Your code here
+  //create nested for loops to loop over stack array and return values
+  let stackCheck = stacks.length;
+  for (let i = 0; i < stackCheck; i++) {
+    let halfWay = stacks[i].length;
+  for (let j = 0; j<halfWay; j++){
+    console.log(stacks[i][j])
+  }
+  }
 
 }
 
@@ -57,6 +65,8 @@ if (typeof describe === 'function') {
     it('should be able to move a block', () => {
       towersOfHanoi('a', 'b');
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
+      towersOfHanoi('a', 'c');
+      assert.deepEqual(stacks, { a: [4, 3], b: [1], c: [2] });
     });
   });
 
