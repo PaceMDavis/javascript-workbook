@@ -1,5 +1,7 @@
 function pigLatin(word) {
   //lowerCase and trim word
+  let str = document.getElementById("textBox1").value;
+  // alert(str);
   word = word.toLowerCase().trim();
   
   // Your code here
@@ -18,20 +20,22 @@ function pigLatin(word) {
 
     // }
      if (vowels.includes(firstLetter)) {
-      return word + "yay";
-      
+      document.getElementById("returnWord").innerHTML=word + "yay";
+      return document.getElementById("returnWord");
     }
     //create else condition for all remaining words that don't start with vowels
     //Use a for loop to run through the word until it finds the first vowel
     //Once it finds the first vowel return the word cut from the first vowel on
     //Add that to the word from position 0 until the first vowel and add "ay"
     else {
-      for (let i = 1; i < word.length; i++) {
-        if (vowels.includes(word[i])) {
-          return word.slice(i) + word.slice(0, i) + "ay";
+      for (let i = 0; i < word.length; i++) {
+        if (vowels.includes(word[i]))  { console.log(word.slice(i) + word.slice(0, i) + "ay")      
+          document.getElementById("returnWord").innerHTML=word.slice(i) + word.slice(0, i) + "ay";
+        return document.getElementById("returnWord");
         }
-  
+        
       }
     }
+    
     }
   
