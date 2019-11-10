@@ -78,7 +78,6 @@ function checkForWin() {
   // reach that length. If so, return true and validate win.
   let winningStack = stacks.a.length;
   if(stacks.b.length === winningStack || stacks.c.length === winningStack) {
-  console.log("You're a winner!")
   return true;
   } return false;
 
@@ -97,6 +96,9 @@ function towersOfHanoi(startStack, endStack) {
   // check if the stacks qualify for a win. Otherwise, return an error message and do nothing.
   if (isLegal(startStack, endStack) && isStack(startStack, endStack)) {
     movePiece(startStack, endStack) && checkForWin(startStack, endStack);
+    if (checkForWin(startStack, endStack) === true) {
+      console.log("You're a winner!")
+    }
   } else {
     console.log("Illegal move! Try again!");
   }
