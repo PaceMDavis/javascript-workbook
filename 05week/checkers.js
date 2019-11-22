@@ -8,13 +8,22 @@ const rl = readline.createInterface({
 });
 
 
-function Checker() {
+class Checker {
+  constructor(color) {
   // Your code here
+    if(color === 'white') {
+      this.symbol = String.fromCharCode(0x125CB)
+    } else if (color === 'black') {
+      this.symbol = String.fromCharCode(0x125CF)
+    }
+  }
 }
 
 class Board {
   constructor() {
-    this.grid = []
+    this.grid = [];
+    this.checkers = [];
+    
   }
   // method that creates an 8x8 array, filled with null values
   createGrid() {
@@ -51,9 +60,36 @@ class Board {
     }
     console.log(string);
   }
-
+//create chekcers kill checkers select checkers
   // Your code here
-}
+ createCheckers() {
+  const whitePositions = [[0, 1], [0, 3], [0, 5], [0, 7],
+  [1, 0], [1, 2], [1, 4], [1, 6],
+  [2, 1], [2, 3], [2, 5], [2, 7]]
+  const blackPositions = [[5, 0], [5, 2], [5, 4], [5, 6],
+  [6, 1], [6, 3], [6, 5], [6, 7],
+  [7, 0], [7, 2], [7, 4], [7, 6]]
+  for(let i = 0; i<= 11; i++) {
+    
+      const row = whitePositions[i][0]
+      const column = whitePositions[i][1]
+      this.grid[row][column] = new Checker('white', game.board.checkers.length++)
+      const rowBlack = blackPositions[i][0]
+      const colBlack = blackPositions[i][1]
+      this.grid[rowBlack][colBlack] = new Checker('black', game.board.checkers.length++)
+    }
+  }
+ 
+ 
+  
+ 
+ selectChecker(position) {
+
+ }
+ killChecker(position) {
+
+ }
+} 
 
 class Game {
   constructor() {
@@ -61,7 +97,10 @@ class Game {
   }
   start() {
     this.board.createGrid();
+    this.board.createCheckers();
+    console.log(game.board.checkers.length)
   }
+
 }
 
 function getPrompt() {
