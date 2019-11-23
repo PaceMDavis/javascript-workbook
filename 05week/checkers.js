@@ -63,6 +63,7 @@ class Board {
 //create chekcers kill checkers select checkers
   // Your code here
  createCheckers() {
+//copy the array positions in and name the variables
   const whitePositions = [[0, 1], [0, 3], [0, 5], [0, 7],
   [1, 0], [1, 2], [1, 4], [1, 6],
   [2, 1], [2, 3], [2, 5], [2, 7]]
@@ -70,25 +71,41 @@ class Board {
   [6, 1], [6, 3], [6, 5], [6, 7],
   [7, 0], [7, 2], [7, 4], [7, 6]]
   for(let i = 0; i<= 11; i++) {
-    
+  //Use a for loop to iterate over array 11 positions for each color, and assign the positions  
       const row = whitePositions[i][0]
       const column = whitePositions[i][1]
-      this.grid[row][column] = new Checker('white', game.board.checkers.length++)
-      const rowBlack = blackPositions[i][0]
-      const colBlack = blackPositions[i][1]
-      this.grid[rowBlack][colBlack] = new Checker('black', game.board.checkers.length++)
+      this.grid[row][column] = new Checker('white')
+      this.checkers.push(this.grid[row][column]);
     }
+  //update the array with new Checkers and push it
+  for(let i = 0; i <= 11; i++) {
+    const rowBlack = blackPositions[i][0]
+      const colBlack = blackPositions[i][1]
+      this.grid[rowBlack][colBlack] = new Checker('black')
+      this.checkers.push(this.grid[rowBlack][colBlack]);
+  }
   }
  
  
   
  
- selectChecker(position) {
-
+ selectChecker(row, column) {
+  return this.grid[row][column]
+  // console.log(this.grid[row][column]);
  }
+ //Create killChecker function with select checker at the 0 and 1 positions (given positions)
  killChecker(position) {
-
- }
+  const findKillChecker = selectChecker(position[0], position[1])
+//Read the indexOf the checker selected
+  const checkerGrabbed = this.checkers.indexOf(checker);
+//Use splice to remove the grabbed checker from the board
+  this.checkers.splice(checkerGrabbed, 1);
+//Set that position to null to update the board
+  this.grid[position[0]][position[1]] = null;
+  if(findKillChecker) {
+    return true
+  }
+}
 } 
 
 class Game {
@@ -98,10 +115,38 @@ class Game {
   start() {
     this.board.createGrid();
     this.board.createCheckers();
-    console.log(game.board.checkers.length)
   }
-
-}
+  moveChecker(start, end) {
+    const startRow = parseInt(start[0]);
+    const startCol = parseInt(start[1]);
+    const endRow  = parseInt(end[0]);
+    const endCol = parseInt(end[1]);
+    //These variables below return as a string without parseInt 
+    //I tried converting to array, but keep getting undefined
+    //When I try to kill a checker
+    // const startRow = start[0].split('');
+    // const startCol = start[1].split('');
+    // const endRow  = end[0].split('');
+    // const endCol = end[1].split('');
+    //Set checker variable reading the board and calling selectChecker and passing in positions
+    const checker = this.board.selectChecker(start[0], start[1])
+    //Update the board to add the checker to the new positions and set the old position to null
+    this.board.grid[startRow][startCol] = null;
+    this.board.grid[endRow][endCol] = checker;
+    //If statement to see if the absolute value of the endRow-startRow = 2
+    if(Math.abs(endRow - startRow) === 2) {
+    //if so add 1 to startCol and Row positions to account for the position between the jump
+    //else add 1 to EndCol and endRow to account for normal move.
+    let killCol = endCol-startCol > 0 ? startCol+1 : endCol+1;
+    let killRow = endRow-startRow > 0 ? startRow+1 : endRow+1;
+    //Update the array position between the jump (where the checker was killed) to null
+    this.board.grid[killRow][killCol] = null;
+    //Use pop to remove the checker from the board
+    this.board.checkers.pop()
+    
+      } 
+    }
+  }
 
 function getPrompt() {
   game.board.viewGrid();
