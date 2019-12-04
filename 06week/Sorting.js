@@ -28,9 +28,11 @@ let atxIdx = 0;
 let nums = 0;
 for(let i = 0; i <numberArray.length; i++) {
   if(numberArray[i] + i === 512) {
-    nums += numberArray[i];
-    atxIdx = i - nums;
-  }
+    atxIdx = i;
+    console.log(numberArray[i], i)
+    nums = numberArray;
+    break;
+  } 
 }
 console.log(`index: ${atxIdx}, value: ${nums[atxIdx]}`);
 
@@ -102,18 +104,50 @@ const weather = [
 ];
 
 //using a higher order function, create an array of the unique 'weather_state_name' values of the weather array. Your function should return the following array ['Light Cloud', 'Heavy Cloud', 'Showers']
-const weatherStates = weather.map((stateName) => {
-  return stateName.weather_state_name;
-});
-console.log(weatherStates)
+// const weatherStates = arr => {
+//   const uniqueWeather =[];
+//   weather.forEach(item => {
+//     if(weather.indexOf(item) === arr.lastIndexOf(item)) {
+//       uniqueWeather.push(item)
+//     }
+//   })
+
+// }
+
+const findUnique = arr => {
+  const weatherStates = weather.map(weatherObject =>weatherObject.weather_state_name)
+  const uniqueCloud = new Set(weatherStates)
+  return [...uniqueCloud]
+  //study spread operator and set
+  // return weatherStates.filter((cloudName) => weatherStates.indexOf(cloudName) === weatherStates.lastIndexOf(cloudName))
+};
+findUnique(weather)
+console.log(findUnique(weather))
+
+// const weatherStates = weather.map((stateName) => {
+
+//   return stateName.weather_state_name;
+// });
+// console.log(weatherStates)
 
 
 //find the id of the object in weather that has a min_temp of 15.915
-
-const idealTemp = weather.map((temp) =>{
+//creating a function to find the id of a min-temp over 15.915
+const idealTemp = (arr) => {
+  //create empty array to pass forEach values to
+  let newArr = [];
+  //Use forEach function to loop over every object in the array
+  //temp is parameter
+  arr.forEach((temp) =>{
+  //inside forEach if statement to evaluate min-temp >= 15.915
   if(temp.min_temp >= 15.915) {
-    return temp.id
-  }
-});
-
-console.log(idealTemp)
+  // push the id number of any values that match criteria to the newArr
+    newArr.push(temp.id)
+  } 
+}) 
+//return new Arr outside scope of forEach to be accessed by function
+return newArr;
+};
+// idealTemp(weather)
+//call function and pass weather as the argument
+console.log(idealTemp(weather))
