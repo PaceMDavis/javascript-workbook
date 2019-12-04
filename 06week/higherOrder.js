@@ -14,6 +14,7 @@ function filter(arr, callback) {
   // Your code here
 }
 
+const foodItems = [5.50, 7.65, 8.12, 23.12]
 function reduce(arr,callback) {
   // Your code here
 }
