@@ -104,6 +104,10 @@ function towersOfHanoi(startStack, endStack) {
   }
 } 
 
+// Your code here
+//This may be bad code, but had to resolve conflicts
+startStack =stacks[stacks.lengt-1]
+
 
 function getPrompt() {
   printStacks();
