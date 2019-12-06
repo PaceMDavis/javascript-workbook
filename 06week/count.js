@@ -28,7 +28,7 @@ for (i = 0; i < str.length; i++) {
 }
 
 for (ch in counts) {
-  document.getElementById("returnWord").innerHTML=(`${ch} count: ${counts[ch]}`);
+  document.getElementById("returnWord").innerHTML+=(`  ${ch} count: ${counts[ch]}  |`);
 }
 //document.getElementById("returnWord").innerHTML=word.slice(i) + word.slice(0, i) + "ay";
 }
