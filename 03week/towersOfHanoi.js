@@ -92,6 +92,7 @@ function isStack(startStack, endStack) {
 }
 //Write a function to call in all other functions and determine what happens if you meet conditions.
 function towersOfHanoi(startStack, endStack) {
+
   // if/else statement that says if you are accessing a valid stack and the move is legal, allow the move and 
   // check if the stacks qualify for a win. Otherwise, return an error message and do nothing.
   if (isLegal(startStack, endStack) && isStack(startStack, endStack)) {
@@ -107,6 +108,8 @@ function towersOfHanoi(startStack, endStack) {
 // Your code here
 //This may be bad code, but had to resolve conflicts
 startStack =stacks[stacks.lengt-1]
+=======
+
 
 
 function getPrompt() {
