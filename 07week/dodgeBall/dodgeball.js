@@ -94,9 +94,34 @@ const listPeopleChoices = () => {
     li.appendChild(button)
     li.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
     listElement.append(li)
-  })
+    listOfPlayers.push(person)
+  }); console.log(listOfPlayers)
 }
 
+
 const makePlayer = (id) => {
+  const dodgePlayers = document.getElementById('players')
+  arrOfPeople.map(person => {
+    playerMove = document.getElementById(`${id}`)
+    const li = document.createElement("li")
+    const redButton = document.createElement("button")
+    const blueButton = document.createElement("button")
+    redButton.innerHTML = "Red Team"
+    blueButton.innerHTML = "Blue Team"
+    redButton.addEventListener('click', function() {redTeamAssign(person.id)})
+    blueButton.addEventListener('click', function() {blueTeamAssign(person.id)})
+    li.appendChild(redButton)
+    li.appendChild(blueButton)
+    li.appendChild(document.createTextNode(`${person.name} - ${person.skillSet}`))
+    dodgePlayers.append(li)
+  })
   console.log(`li ${id} was clicked!`)
+}
+
+const redTeamAssign = (id) => {
+  console.log(`li ${id} was clicked red`)
+}
+
+const blueTeamAssign = (id) => {
+  console.log(`li ${id} was clicked blue`)
 }
