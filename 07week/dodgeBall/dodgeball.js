@@ -1,3 +1,4 @@
+//This is the array of potential players for dodgeball we will call
 const arrOfPeople = [
   {
     id: 2,
@@ -50,20 +51,39 @@ const arrOfPeople = [
   },
 ]
 
+//Set up empty arrays for listOfPlayers, blueTeam, and redTeam
 const listOfPlayers = []
 const blueTeam = []
 const redTeam = []
 
+//Set up a class for player that includes canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience, and will need to extend when added to a team
 class player {
-  constructor(){}
-}
-class blueTeammate {
-  constructor(){}
-}
-class redTeammate {
-  constructor(){}
+  constructor(canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience){
+    this.canThrowBall = canThrowBall;
+    this.canDodgeBall = canDodgeBall;
+    this.hasPaid = hasPaid;
+    this.isHealthy = isHealthy;
+    this.yearsExperience = yearsExperience;
+    }
 }
 
+// set up a class for blueTeammate that players can be added to
+class blueTeammate extends player {
+  constructor(color, mascot, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience){
+    super(canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience);
+    this.color = color;
+    this.mascot = mascot;
+  }
+}
+//set up a class for redTeammate that players can be added to
+class redTeammate extends player {
+  constructor(color, mascot, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience){
+    super(canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience);
+    this.color = color;
+    this.mascot = mascot;
+  }
+}
+// This function populates the first list of people when clicked
 const listPeopleChoices = () => {
   const listElement = document.getElementById('people')
   arrOfPeople.map(person => {
