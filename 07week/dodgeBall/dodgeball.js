@@ -1,4 +1,5 @@
 //This is the array of potential players for dodgeball we will call
+// require('jsdom-global')()
 const arrOfPeople = [
   {
     id: 2,
@@ -162,8 +163,8 @@ const redTeamAssign = (id) => {
   let index =listOfPlayers.findIndex(person => {
     return person.id= id
   })
-  let player = new RedTeammate(listOfPlayers[index], true, true, true, true, 4)
-  redTeam.push(player.person)
+  let player = new RedTeammate(listOfPlayers[index].person, true, true, true, true, 4)
+  redTeam.push(player)
   listOfPlayers.splice(index,1)
   displayRed()
   displayPlayer()
@@ -185,10 +186,88 @@ const blueTeamAssign = (id) => {
   let index =listOfPlayers.findIndex(person => {
     return person.id= id
   })
-  let player = new BlueTeammate(listOfPlayers[index], true, true, true, true, 4)
-  blueTeam.push(player.person)
+  let player = new BlueTeammate(listOfPlayers[index].person, true, true, true, true, 4)
+  blueTeam.push(player)
   listOfPlayers.splice(index,1)
   displayBlue()
   displayPlayer()
-  console.log(blueTeam)
+  console.log(blueTeam, "hello there")
 }
+
+//Three tests
+//Check to make sure listOfPlayers array has been populated with seven players
+//When player is added to blue or red team, verify that the length of the array has increased
+//Check to make sure mascot equals something on addition to a team
+const assert = require('assert');
+//tests
+if(typeof describe === 'function') {
+  describe('arrOfPeople', function(){
+    it('Test that the original length of arrOfPeople is 6', function(){
+      assert.equal(arrOfPeople.length, 7);
+    });
+  });
+
+  describe('PlayerClass', function(){
+    it('should have the constructors person, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience', function(){
+      let paul = new Player('Paul', true, true, true, true, 4);
+      assert.equal(paul.canThrowBall, true);
+      assert.equal(paul.canDodgeBall, true);
+      assert.equal(paul.hasPaid, true);
+      assert.equal(paul.yearsExperience, 4);
+    });
+  });
+
+  describe('blueTeamMate', function() {
+    it('should extend the constructors mascot and color to playerClass', function(){
+      let bluePaul = new BlueTeammate('Paul', true, true, true, true, 4);
+      assert.equal(bluePaul.mascot, 'Bluejay');
+      assert.equal(bluePaul.color, 'Blue');
+    })
+  })
+}
+
+// if (typeof describe === 'function'){
+//   describe('CrewMember', function(){
+//     it('should have a name, a job, a specialSkill and ship upon instantiation', function(){
+//       var crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry');
+//       assert.equal(crewMember1.name, 'Rick Martinez');
+//       assert.equal(crewMember1.job, 'pilot');
+//       assert.equal(crewMember1.specialSkill, 'chemistry');
+//       assert.equal(crewMember1.ship, null);
+//     });
+
+//     it('can enter a ship', function(){
+//       let mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
+//       let crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry');
+//       crewMember1.enterShip(mav);
+//       assert.equal(crewMember1.ship, mav);
+//       assert.equal(mav.crew.length, 1);
+//       assert.equal(mav.crew[0], crewMember1);
+//     });
+//   });
+
+//   describe('Ship', function(){
+//     it('should have a name, a type, an ability and an empty crew upon instantiation', function(){
+//       let mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
+//       assert.equal(mav.name, 'Mars Ascent Vehicle');
+//       assert.equal(mav.type, 'MAV');
+//       assert.equal(mav.ability, 'Ascend into low orbit');
+//       assert.equal(mav.crew.length, 0);
+//     });
+
+//     it('can return a mission statement correctly', function(){
+//       let mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
+//       let crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry');
+//       let hermes = new Ship('Hermes', 'Main Ship', 'Interplanetary Space Travel');
+//       let crewMember2 = new CrewMember('Commander Lewis', 'commander', 'geology');
+//       assert.equal(mav.missionStatement(), "Can't perform a mission yet.");
+//       assert.equal(hermes.missionStatement(), "Can't perform a mission yet.");
+
+//       crewMember1.enterShip(mav);
+//       assert.equal(mav.missionStatement(), "Ascend into low orbit");
+
+//       crewMember2.enterShip(hermes);
+//       assert.equal(hermes.missionStatement(), "Interplanetary Space Travel");
+//     });
+//   });
+// }
