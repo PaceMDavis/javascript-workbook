@@ -67,13 +67,14 @@ class Player {
     this.isHealthy = isHealthy;
     this.yearsExperience = yearsExperience;
     }
-assignPlayer(player) {
-  player.push(this)
-  this.player = player
+// assignPlayer(player) {
+//   player.push(this)
+//   this.player = player
+// }
 }
-}
-console.log(Player)
+// console.log(Player)
 // set up a class for blueTeammate that players can be added to
+//Hardcode this.color and this.mascot as they are set for each team color
 class BlueTeammate extends Player {
   constructor(person, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience){
     super(person, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience);
@@ -119,56 +120,82 @@ const listPeopleChoices = () => {
 
 const makePlayer = (id) => {
   const dodgePlayers = document.getElementById('players')
+  //Find index of the player you want to make
   let index = arrOfPeople.findIndex(people => {
     return people.id === id
   })
+  //Set up a new Player class. Pass in the arrOfPeople[index] as person, and set other values to true and years of experience
   let player = new Player(arrOfPeople[index], true, true, true, true, 4)
+  //When clicked, the selected player with class is pushed to the listOfPlayers array
   listOfPlayers.push(player)
+  //They are removed from the arrOfPeople at the same time
   arrOfPeople.splice(index, 1)
+  //displayPlayer and listPeopleChoices are called to update their lists
   displayPlayer()
   listPeopleChoices();
-  console.log(`li ${id} was clicked!`)
+  // console.log(`li ${id} was clicked!`)
 }
 const displayPlayer= () => {
+  //'players' is accessed and given a variable
   const dodgePlayers = document.getElementById('players')
+  //That variable is passed to set the innerHTML to nothing after the first time it is called, otherwise it would populate over and over again
   dodgePlayers.innerHTML=''
+  //The map function is used to map over the listOfPlayers array
   listOfPlayers.map(person => {
-    console.log('MAP', person)
+    // console.log('MAP', person)
+    //The variable person is used, so we have to grab their id by person.person, since they have a person key in the object
     playerMove = document.getElementById(`${person.person.id}`)
+    //a Li is created
     const li = document.createElement("li")
+    //The button to assign them to the red team is created
     const redButton = document.createElement("button")
+    //The button to assign them to the blue team is created
     const blueButton = document.createElement("button")
+    //HTML is set for both buttons
     redButton.innerHTML = "Red Team"
     blueButton.innerHTML = "Blue Team"
+    //Event listeners that listen for a click are also added and reference the functions below
     redButton.addEventListener('click', function() {redTeamAssign(person.person.id)})
     blueButton.addEventListener('click', function() {blueTeamAssign(person.person.id)})
+    //Both buttons and the players info are appended to the li
     li.appendChild(redButton)
     li.appendChild(blueButton)
     li.appendChild(document.createTextNode(`${person.person.name} - ${person.person.skillSet}`))
     dodgePlayers.append(li)
   })
 }
+//Wrote two separate functions here, one for assigning them to a team and another for displaying them in the GUI
 const displayRed = () => {
+  //Grab the element
   const redPlayers = document.getElementById('red')
+  //Set the redplayer html to nothing, so it doesn't print multiple times
   redPlayers.innerHTML=''
+  // map over the redTeam array
   redTeam.map(person => {
-    // playerMove = document.getElementById(`${id}`)
+    //Create new LI
     const li = document.createElement("li")
+    //Put info in the read team UL
     li.appendChild(document.createTextNode(`${person.person.name} - ${person.person.skillSet}`))
     redPlayers.append(li)
   })
 }
 const redTeamAssign = (id) => {
+  //Grab the same element as above
   const redPlayers = document.getElementById('red')
+  //Use findIndex to grab the index of the player selected
   let index =listOfPlayers.findIndex(person => {
     return person.id= id
   })
+  //Extend the player to become a redTeammate
   let player = new RedTeammate(listOfPlayers[index].person, true, true, true, true, 4)
+  //Push them to the redTeam array
   redTeam.push(player)
+  //Splice them off the listOfPlayers array
   listOfPlayers.splice(index,1)
+  //Call displayRed and displayPlayer to update those lists accordingly
   displayRed()
   displayPlayer()
-  console.log(redTeam)
+  // console.log(redTeam)
 }
 const displayBlue = () => {
   const bluePlayers = document.getElementById('blue')
